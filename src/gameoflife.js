@@ -3,9 +3,16 @@ var gameoflife = {
 
     newGeneration : function(grid) {
 
-        grid.foreach()
+        for (let row = 0; row < grid.length; row++) {
+            for (let index = 0; index < grid[row].length; index++) {
+                let count = this.countAroundCell(grid[row], index);
+                if (count < 2) {
+                    grid[row][index] = ".";
+                }
+            }
+        }
 
-        return [];
+        return grid;
     },
 
     countAroundCell : function(grid, row, y) {

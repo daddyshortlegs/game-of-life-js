@@ -2,7 +2,7 @@ import {gameoflife} from "./gameoflife";
 
 
 describe("Game Of Life", () => {
-    xit("cell should die when less than 2 live neighbours", () => {
+    it("cell should die when less than 2 live neighbours", () => {
         let grid = [
             ['.','.','.','.','.'],
             ['.','.','*','.','.'],
