@@ -9,15 +9,15 @@ var gameoflife = {
     },
 
     countLeft : function(row, x) {
-        if (row[x - 1] === "*") {
-            return 1;
-        }
-
-        return 0;
+        return this.countSingle(row, x - 1);
     },
 
     countRight : function(row, x) {
-        if (row[x + 1] === "*") {
+        return this.countSingle(row, x + 1);
+    },
+
+    countSingle : function(row, cell) {
+        if (row[cell] === "*") {
             return 1;
         }
 
