@@ -1,0 +1,25 @@
+{
+  "name": "kata-template",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "jest",
+    "test:watch": "jest --watch",
+    "acceptance": "babel-node ./node_modules/.bin/cucumber-js",
+    "acceptance:open": "open ./reports/acceptance/cucumber_report.html"
+  },
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "babel-cli": "^6.26.0",
+    "babel-core": "^6.26.0",
+    "babel-preset-env": "^1.6.1",
+    "babel-register": "^6.26.0",
+    "chai": "^4.1.2",
+    "cucumber": "^4.0.0",
+    "cucumber-html-reporter": "^4.0.1",
+    "jest": "^22.4.0",
+    "rimraf": "^2.6.2"
+  }
+}
