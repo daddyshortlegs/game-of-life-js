@@ -47,5 +47,14 @@ describe("Game Of Life", () => {
         expect(count).toEqual(0);
     });
 
+    it("should count a row of three", () => {
+        let count = gameoflife.countRow(['.','*','*','*','.'], 1);
+        expect(count).toEqual(2);
+    });
+
+    it("should count a row of three", () => {
+        let count = gameoflife.countRow(['.','*','*','*','.'], 2);
+        expect(count).toEqual(3);
+    });
 
 });

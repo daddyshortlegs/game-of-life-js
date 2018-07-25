@@ -22,7 +22,19 @@ var gameoflife = {
         }
 
         return 0;
+    },
+
+    countRow : function(row, x) {
+        let count = 0;
+        for (let i = x - 1; i <= x + 1; i++) {
+           if (row[i] === "*") {
+               count++;
+           }
+        }
+
+        return count;
     }
+
 }
 
 export { gameoflife };
