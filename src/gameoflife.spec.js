@@ -28,22 +28,22 @@ describe("Game Of Life", () => {
 
 
     it("should get number of live cells to the left", () => {
-        let count = gameoflife.countLeft(['.','*','*','.','.'], 2);
+        let count = gameoflife.countSingle(['.','*','*','.','.'], 2 - 1);
         expect(count).toEqual(1);
     });
 
     it("should return no live cells to the left", () => {
-        let count = gameoflife.countLeft(['.','.','*','.','.'], 2);
+        let count = gameoflife.countSingle(['.','.','*','.','.'], 2 - 1);
         expect(count).toEqual(0);
     });
 
     it("should get number of live cells to the right", () => {
-        let count = gameoflife.countRight(['.','.','*','*','.'], 2);
+        let count = gameoflife.countSingle(['.','.','*','*','.'], 2 + 1);
         expect(count).toEqual(1);
     });
 
     it("should return no live cells to the Right", () => {
-        let count = gameoflife.countRight(['.','.','*','.','.'], 2);
+        let count = gameoflife.countSingle(['.','.','*','.','.'], 2 + 1);
         expect(count).toEqual(0);
     });
 
@@ -57,4 +57,15 @@ describe("Game Of Life", () => {
         expect(count).toEqual(3);
     });
 
+    it("should count around a single cell", () => {
+        let grid = [
+            ['.','.','.','.'],
+            ['.','*','*','*'],
+            ['*','*','.','*'],
+            ['.','*','*','*']
+        ];
+        let count = gameoflife.countAroundCell(grid, 2, 1);
+        expect(count).toEqual(5);
+
+    });
 });
