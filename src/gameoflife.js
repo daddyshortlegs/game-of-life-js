@@ -4,43 +4,34 @@ var gameoflife = {
         let newGrid = [];
 
         for (let row = 0; row < grid.length; row++) {
-            let line = "";
-            let newLine = "";
-
-            let newRow = [];
-            for (let index = 0; index < grid[row].length; index++) {
-                let count = this.countAroundCell(grid, row, index);
-                console.log("symbol = " + grid[row][index]+ " row = " + row + ", index = " + index + " count = " + count);
-
-                line += grid[row][index] + " ";
-
-                if (grid[row][index] === "*") {
-                    console.log("helo, we're a cell");
-                    if (count < 2 || count > 3) {
-                        console.log("killing off cell count > 3");
-                        newRow.push(".");
-                    } else {
-                        console.log("staying alive");
-                        newRow.push("*");
-                    }
-                } else {
-                    if (count === 3) {
-                        newRow.push("*");
-                        console.log("reanimating");
-                    } else {
-                        console.log("cells already dead, staying dead");
-                        newRow.push(".");
-                    }
-                }
-
-
-            }
-            newGrid.push(newRow);
-            console.log(line);
+            newGrid.push(this.generateNewRow(grid, row));
         }
 
         return newGrid;
     },
+
+    generateNewRow: function (grid, row) {
+        let newRow = [];
+        for (let index = 0; index < grid[row].length; index++) {
+            let count = this.countAroundCell(grid, row, index);
+
+            if (grid[row][index] === "*") {
+                if (count < 2 || count > 3) {
+                    newRow.push(".");
+                } else {
+                    newRow.push("*");
+                }
+            } else {
+                if (count === 3) {
+                    newRow.push("*");
+                } else {
+                    newRow.push(".");
+                }
+            }
+        }
+        return newRow;
+    },
+
 
     countAroundCell : function(grid, row, y) {
         let count = this.countAbove(grid, row, y);
