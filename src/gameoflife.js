@@ -16,10 +16,7 @@ var gameoflife = {
 
                 if (grid[row][index] === "*") {
                     console.log("helo, we're a cell");
-                    if (count < 2) {
-                        console.log("killing off cell count < 2");
-                        newRow.push(".");
-                    } else if (count > 3) {
+                    if (count < 2 || count > 3) {
                         console.log("killing off cell count > 3");
                         newRow.push(".");
                     } else {
@@ -27,8 +24,13 @@ var gameoflife = {
                         newRow.push("*");
                     }
                 } else {
-                    console.log("cells already dead, staying dead");
-                    newRow.push(".");
+                    if (count === 3) {
+                        newRow.push("*");
+                        console.log("reanimating");
+                    } else {
+                        console.log("cells already dead, staying dead");
+                        newRow.push(".");
+                    }
                 }
 
 

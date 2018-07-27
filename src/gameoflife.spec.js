@@ -24,6 +24,28 @@ describe("Game Of Life", () => {
         expect(nextGen).toEqual(expected);
     });
 
+    it("cell should live when 2 neighbours", () => {
+        let grid = [
+            ['.','.','.','.','.'],
+            ['.','.','.','.','.'],
+            ['.','.','*','*','.'],
+            ['.','.','.','*','.'],
+            ['.','.','.','.','.']
+        ];
+
+        let nextGen = gameoflife.newGeneration(grid);
+
+        let expected = [
+            ['.','.','.','.','.'],
+            ['.','.','.','.','.'],
+            ['.','.','*','*','.'],
+            ['.','.','*','*','.'],
+            ['.','.','.','.','.']
+        ];
+
+        expect(nextGen).toEqual(expected);
+    });
+
     it("cell should live when 3 neighbours", () => {
         let grid = [
             ['.','.','.','.','.'],
@@ -61,13 +83,34 @@ describe("Game Of Life", () => {
             ['.','.','.','.','.'],
             ['.','.','.','.','.'],
             ['.','.','*','*','.'],
-            ['.','.','.','.','.'],
-            ['.','.','*','.','.']
+            ['.','*','.','.','.'],
+            ['.','.','*','*','.']
         ];
 
         expect(nextGen).toEqual(expected);
     });
 
+    it("dead cell should reanimate with 3 live neighbours", () => {
+        let grid = [
+            ['.','.','.','.','.'],
+            ['.','.','*','.','.'],
+            ['.','.','*','.','.'],
+            ['.','.','*','.','.'],
+            ['.','.','.','.','.']
+        ];
+
+        let nextGen = gameoflife.newGeneration(grid);
+
+        let expected = [
+            ['.','.','.','.','.'],
+            ['.','.','.','.','.'],
+            ['.','*','*','*','.'],
+            ['.','.','.','.','.'],
+            ['.','.','.','.','.']
+        ];
+
+        expect(nextGen).toEqual(expected);
+    });
 
 
     it("should get number of live cells to the left", () => {
