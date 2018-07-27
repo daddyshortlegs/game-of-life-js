@@ -13,7 +13,6 @@ describe("Game Of Life", () => {
 
         let nextGen = gameoflife.newGeneration(grid);
 
-
         let expected = [
             ['.','.','.','.','.'],
             ['.','.','.','.','.'],
@@ -23,8 +22,52 @@ describe("Game Of Life", () => {
         ];
 
         expect(nextGen).toEqual(expected);
-
     });
+
+    it("cell should live when 3 neighbours", () => {
+        let grid = [
+            ['.','.','.','.','.'],
+            ['.','.','.','.','.'],
+            ['.','.','*','*','.'],
+            ['.','.','*','*','.'],
+            ['.','.','.','.','.']
+        ];
+
+        let nextGen = gameoflife.newGeneration(grid);
+
+        let expected = [
+            ['.','.','.','.','.'],
+            ['.','.','.','.','.'],
+            ['.','.','*','*','.'],
+            ['.','.','*','*','.'],
+            ['.','.','.','.','.']
+        ];
+
+        expect(nextGen).toEqual(expected);
+    });
+
+    it("cell should die when more than 3 neighbours", () => {
+        let grid = [
+            ['.','.','.','.','.'],
+            ['.','.','.','.','.'],
+            ['.','.','*','*','.'],
+            ['.','.','*','*','.'],
+            ['.','.','*','.','.']
+        ];
+
+        let nextGen = gameoflife.newGeneration(grid);
+
+        let expected = [
+            ['.','.','.','.','.'],
+            ['.','.','.','.','.'],
+            ['.','.','*','*','.'],
+            ['.','.','.','.','.'],
+            ['.','.','*','.','.']
+        ];
+
+        expect(nextGen).toEqual(expected);
+    });
+
 
 
     it("should get number of live cells to the left", () => {
@@ -66,6 +109,31 @@ describe("Game Of Life", () => {
         ];
         let count = gameoflife.countAroundCell(grid, 2, 1);
         expect(count).toEqual(5);
+    });
+
+    it("should count around a single cell 2", () => {
+        let grid = [
+            ['.','.','.','.','.'],
+            ['.','.','.','.','.'],
+            ['.','.','*','*','.'],
+            ['.','.','*','*','.'],
+            ['.','.','*','.','.']
+        ];
+        let count = gameoflife.countAroundCell(grid, 3, 0);
+        expect(count).toEqual(0);
+
+        count = gameoflife.countAroundCell(grid, 3, 1);
+        expect(count).toEqual(3);
+
+        count = gameoflife.countAroundCell(grid, 3, 2);
+        expect(count).toEqual(4);
+
+        count = gameoflife.countAroundCell(grid, 3, 3);
+        expect(count).toEqual(4);
+
+        count = gameoflife.countAroundCell(grid, 3, 4);
+        expect(count).toEqual(2);
 
     });
+
 });
